@@ -36,7 +36,7 @@ export const handler = router.handler({
 })*/
 
 
-exports.handler = async (event) => {
+export const handler =  async function(event, context) {
     let body = JSON.parse(event.body)
     const product = body.num1 * body.num2;
     const response = {
