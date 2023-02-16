@@ -51,7 +51,8 @@ export const handler =  async function(event, context) {
     
     //get the query parameters and split them into inutArray
     const inputString = event.queryStringParameters.slist;
-    const inputArray = inputString.split(",");
+    const inputArrayString = inputString.split(",");
+    const inputArray = inputArrayString.map(Number);
     
 
     let swapCount = 0;
@@ -72,7 +73,7 @@ export const handler =  async function(event, context) {
     //send response (array)
     const response = {
         statusCode: 200,
-        body: JSON.stringify("The product of is " + inputArray),
+        body: JSON.stringify("Here is the sorted list " + inputArray),
     };
     return response;
     
