@@ -37,11 +37,10 @@ export const handler = router.handler({
 
 
 export const handler =  async function(event, context) {
-    let body = JSON.parse(event.body);
-    const product = body.num1 * body.num2;
+    const product = event.queryStringParameters.num1 * event.queryStringParameters.num2;
     const response = {
         statusCode: 200,
-        body: "The product of " + body.num1 + " and " + body.num2 + " is " + product,
+        body: "The product of is " + product,
     };
     return response;
 };
