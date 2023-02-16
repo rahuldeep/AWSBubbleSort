@@ -36,12 +36,47 @@ export const handler = router.handler({
 })*/
 
 
-export const handler =  async function(event, context) {
+/*export const handler =  async function(event, context) {
     const body = JSON.parse(event.body);
-    const product = body.num1 * event.body.num2;
+    const product = body.num1 * body.num2;
     const response = {
         statusCode: 200,
         body: "The product of is " + product,
     };
     return response;
-};
+};*/
+
+
+export const handler =  async function(event, context) {
+    const inputString = event.queryStringParameters.slist;
+    const inputArray = inputString.split(",");
+    
+
+    let swapCount = 0;
+    let isSorted = false;
+
+    while (!isSorted) {
+        isSorted = true;
+        inputArray.forEach((currentValue, index) => {
+            if (currentValue > inputArray[index + 1]) {
+                swapElements(index);
+                swapCount++;
+                isSorted = false;
+            }
+        });
+    }
+    const response = {
+        statusCode: 200,
+        body: "The product of is " + inputArray,
+    };
+    return response;
+    
+
+
+function swapElements(index) {
+    [inputArray[index], inputArray[index + 1]] = [inputArray[index + 1], inputArray[index]];
+}
+}
+
+
+
